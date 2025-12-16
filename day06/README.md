@@ -20,8 +20,9 @@ The goal is to evaluate each problem correctly and then **sum all results**.
 
 ## Part 1
 
-- Numbers are read **top to bottom** within each problem
-- The operator at the bottom determines whether to add or multiply
+- Each problem spans multiple adjacent columns
+- Numbers are constructed **row-wise** by reading digits left to right
+- The operator at the bottom applies to all numbers in that problem
 - The final answer is the **sum of all problem results**
 
 ---
