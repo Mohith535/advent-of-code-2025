@@ -9,44 +9,49 @@ based only on the fresh ID ranges.
 """
 
 def parse_ranges(file_path):
-    with open(file_path, "r") as f:
-        lines = [line.strip() for line in f if line.strip()]
-
     ranges = []
-    for line in lines:
-        start, end = map(int, line.split("-"))
-        ranges.append((start, end))
+
+    with open(file_path, "r") as f:
+        for line in f:
+            line = line.strip()
+            if not line:
+                continue
+            if "-" not in line:
+                continue
+
+            start, end = map(int, line.split("-"))
+            ranges.append((start, end))
 
     return ranges
 
 
 def merge_ranges(ranges):
-    """
-    Merges overlapping or adjacent ranges.
-    """
     ranges.sort()
     merged = [ranges[0]]
 
-    for current_start, current_end in ranges[1:]:
+    for curr_start, curr_end in ranges[1:]:
         last_start, last_end = merged[-1]
 
-        if current_start <= last_end + 1:
-            merged[-1] = (last_start, max(last_end, current_end))
+        if curr_start <= last_end + 1:
+            merged[-1] = (last_start, max(last_end, curr_end))
         else:
-            merged.append((current_start, current_end))
+            merged.append((curr_start, curr_end))
 
     return merged
 
 
 def solve():
-    ranges = parse_ranges("day 5 part 2 puzzle input.txt")
-    merged_ranges = merge_ranges(ranges)
+    ranges = parse_ranges(
+        r"E:\advent of code 2025 december\AOC\day 5 part 2 puzzle input.txt"
+    )
 
-    total_fresh_ids = 0
-    for start, end in merged_ranges:
-        total_fresh_ids += (end - start + 1)
+    merged = merge_ranges(ranges)
 
-    print(total_fresh_ids)
+    total = 0
+    for start, end in merged:
+        total += (end - start + 1)
+
+    print(total)
 
 
 if __name__ == "__main__":
