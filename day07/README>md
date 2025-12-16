@@ -1,0 +1,72 @@
+# Day 7 – Advent of Code 2025
+**Puzzle:** Laboratories
+
+This folder contains my solutions for **Day 7** of Advent of Code 2025.
+
+---
+
+## Problem Summary
+
+A **tachyon beam** enters a laboratory grid from a starting point `S` and travels **downward**.
+
+- Empty space (`.`): beam passes through
+- Splitter (`^`):
+  - Stops the incoming beam
+  - Emits two new beams:
+    - One to the **left**
+    - One to the **right**
+- All beams always continue **downward**
+
+---
+
+## Part 1 — Beam Splitting Count
+
+Track all tachyon beams until they:
+- Reach another splitter, or
+- Exit the grid
+
+Each time a splitter creates **new beams**, it counts as a **split**.
+
+**Goal:**  
+Count how many total beam splits occur.
+
+---
+
+## Part 2 — Quantum Tachyon Manifold
+
+Instead of many beams, **a single tachyon particle** exists.
+
+At each splitter:
+- The universe splits into **two timelines**
+- One timeline goes left
+- One timeline goes right
+
+All timelines continue independently.
+
+**Goal:**  
+Calculate the **total number of timelines** after the particle finishes all possible paths.
+
+---
+
+## Structure
+
+- `part1.py` – Counts total beam splits
+- `part2.py` – Counts total quantum timelines
+
+---
+
+## What I Learned
+
+- Simulating branching paths efficiently
+- Managing exponential growth with dynamic programming
+- Grid-based traversal and beam propagation
+- Translating physical descriptions into precise algorithms
+
+---
+
+## Results
+
+- **Part 1 Answer:** `1524`
+- **Part 2 Answer:** `32982105837605`
+
+> Puzzle inputs are not included as they are unique per user.
