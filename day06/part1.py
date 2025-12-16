@@ -1,49 +1,54 @@
 """
 Advent of Code 2025
-Day 6 - Part 1
+Day 6 - Part 1: Trash Compactor
 
 Author: Mohith Kannan K
+Answer: 3968933219902
 """
 
 def solve():
-    with open("day6_input.txt", "r") as f:
+    with open(r"E:\advent of code 2025 december\AOC\day 6 part 1 puzzle input.txt") as f:
         lines = [line.rstrip("\n") for line in f]
 
     height = len(lines)
     width = max(len(line) for line in lines)
 
-    # Pad all lines to equal width
     grid = [line.ljust(width) for line in lines]
 
     total = 0
-    col = 0
+    c = 0
 
-    while col < width:
-        # Skip empty separator columns
-        if all(grid[row][col] == " " for row in range(height)):
-            col += 1
+    while c < width:
+        # skip empty separator columns
+        if all(grid[r][c] == " " for r in range(height)):
+            c += 1
             continue
 
-        numbers = []
-        operator = None
+        # find one problem block
+        start = c
+        while c < width and not all(grid[r][c] == " " for r in range(height)):
+            c += 1
+        end = c
 
-        for row in range(height):
-            char = grid[row][col]
-            if char in "+*":
-                operator = char
-                break
-            if char.isdigit():
-                numbers.append(int(char))
+        operator = grid[height - 1][start]
+        numbers = []
+
+        # READ ROW-WISE (THIS WAS THE BUG)
+        for r in range(height - 1):
+            digits = []
+            for col in range(start, end):
+                if grid[r][col].isdigit():
+                    digits.append(grid[r][col])
+            if digits:
+                numbers.append(int("".join(digits)))
 
         if operator == "+":
-            value = sum(numbers)
+            total += sum(numbers)
         else:
-            value = 1
+            prod = 1
             for n in numbers:
-                value *= n
-
-        total += value
-        col += 1
+                prod *= n
+            total += prod
 
     print(total)
 
