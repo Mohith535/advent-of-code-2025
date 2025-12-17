@@ -1,3 +1,10 @@
+"""
+Advent of Code 2025
+Day 12 - Part 1
+
+Author: Mohith Kannan K
+"""
+
 from itertools import combinations
 
 def solve():
