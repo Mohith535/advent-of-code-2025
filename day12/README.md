@@ -39,6 +39,22 @@ No additional code is required.
 
 ---
 
+## Implementation Notes
+
+Day 12 involves an NP-complete 2D tiling problem.
+
+A correct backtracking solution is provided for clarity and correctness,
+but it is not optimized enough to finish on the full input within
+reasonable time.
+
+The final result was verified using an optimized solver and confirmed
+by Advent of Code.
+
+This implementation is kept for educational purposes and to demonstrate
+the correct algorithmic approach.
+
+---
+
 ## Structure
 
 - `part1.py` – Solution for Part 1
